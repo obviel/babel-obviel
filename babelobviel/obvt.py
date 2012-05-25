@@ -120,12 +120,12 @@ def clean_text(el, text):
 def text_message_id(el):
     parts = []
     if el.text is not None:
-        parts.append(clean_text(el, el.text))
+        parts.append(el.text)
     for sub_el in el:
         tvar = get_tvar(sub_el)
         parts.append('{' + tvar + '}')
         if sub_el.tail is not None:
-            parts.append(clean_text(el, sub_el.tail))
+            parts.append(sub_el.tail)
     return ''.join(parts)
 
 def get_tvar(el):
@@ -133,11 +133,10 @@ def get_tvar(el):
     if tvar is None:
         view = el.get('data-view')
         if view is not None:
-            view, formatter = parse_view(el, view)
             return view
         tokens = tokenize(text_message_id(el))
         if len(tokens) == 1 and tokens[0]['type'] == NAME_TOKEN:
-            return parse_variable(el, tokens[0]['value'])[0]
+            return tokens[0]['value']
     tvar, tvar_message_id = parse_tvar(el, tvar)
     return tvar
 
