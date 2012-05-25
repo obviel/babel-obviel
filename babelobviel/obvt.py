@@ -72,6 +72,24 @@ def parse_tvar(el, tvar):
         raise ExtractionError(el, "illegal data-tvar")
     return parts[0], parts[1]
 
+def parse_variable(el, variable):
+    view = variable.strip()
+    parts = variable.split('|')
+    if len(parts) == 1:
+        return parts[0], None
+    if len(parts) > 2 or len(parts) == 0:
+        raise ExtractionError(el, "illegal variable")
+    return parts[0], parts[1]
+
+def parse_view(el, view):
+    view = view.strip()
+    parts = view.split('|')
+    if len(parts) == 1:
+        return parts[0], None
+    if len(parts) > 2 or len(parts) == 0:
+        raise ExtractionError(el, "illegal data-view")
+    return parts[0], parts[1]
+    
 def tvar_message_id(el):
     # don't want to extract tvar if there's no actual content to translate
     # (no text, or single variable by itself)
@@ -89,19 +107,37 @@ def tvar_message_id(el):
         return tvar_message_id
     return message_id
 
+def clean_text(el, text):
+    result = []
+    for token in tokenize(text):
+        if token['type'] == NAME_TOKEN:
+            name, formatter = parse_variable(el, token['value'])
+            result.append('{%s}' % name)
+        else:
+            result.append(token['value'])
+    return ''.join(result)
+
 def text_message_id(el):
     parts = []
     if el.text is not None:
-        parts.append(el.text)
+        parts.append(clean_text(el, el.text))
     for sub_el in el:
         tvar = get_tvar(sub_el)
         parts.append('{' + tvar + '}')
         if sub_el.tail is not None:
-            parts.append(sub_el.tail)
+            parts.append(clean_text(el, sub_el.tail))
     return ''.join(parts)
 
 def get_tvar(el):
     tvar = el.get('data-tvar')
+    if tvar is None:
+        view = el.get('data-view')
+        if view is not None:
+            view, formatter = parse_view(el, view)
+            return view
+        tokens = tokenize(text_message_id(el))
+        if len(tokens) == 1 and tokens[0]['type'] == NAME_TOKEN:
+            return parse_variable(el, tokens[0]['value'])[0]
     tvar, tvar_message_id = parse_tvar(el, tvar)
     return tvar
 

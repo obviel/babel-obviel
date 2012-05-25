@@ -103,7 +103,44 @@ def test_text_tvar_message_id():
         lineno, funcname, message, comments = r[1]
         assert lineno == 1
         assert message == 'who_message'
-        
-# implicit tvar due to variable
-# implicit tvar due to data-view
 
+def test_implicit_tvar_due_to_variable():
+    with open(datafile('test12.obvt')) as f:
+        r = list(extractor(f, [], [], []))
+        assert len(r) == 1
+        lineno, funcname, message, comments = r[0]
+        assert lineno == 1
+        assert message == 'Hello {who}!'
+
+def test_implicit_tvar_due_to_view():
+    with open(datafile('test13.obvt')) as f:
+        r = list(extractor(f, [], [], []))
+        assert len(r) == 1
+        lineno, funcname, message, comments = r[0]
+        assert lineno == 1
+        assert message == 'Hello {who}!'
+
+def test_implicit_tvar_due_to_view_with_view_name():
+    with open(datafile('test14.obvt')) as f:
+        r = list(extractor(f, [], [], []))
+        assert len(r) == 1
+        lineno, funcname, message, comments = r[0]
+        assert lineno == 1
+        assert message == 'Hello {who}!'
+
+def test_implicit_tvar_due_to_variable_with_formatter():
+    with open(datafile('test15.obvt')) as f:
+        r = list(extractor(f, [], [], []))
+        assert len(r) == 1
+        lineno, funcname, message, comments = r[0]
+        assert lineno == 1
+        assert message == 'Hello {who}!'
+
+def test_variable_with_formatter():
+    with open(datafile('test16.obvt')) as f:
+        r = list(extractor(f, [], [], []))
+        assert len(r) == 1
+        lineno, funcname, message, comments = r[0]
+        assert lineno == 1
+        assert message == 'Hello {who}!'
+    

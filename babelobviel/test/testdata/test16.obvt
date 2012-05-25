@@ -1,0 +1,1 @@
+<p data-trans="">Hello {who|formatter}!</p>
