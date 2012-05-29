@@ -126,7 +126,7 @@ def test_implicit_tvar_due_to_view_with_view_name():
         assert len(r) == 1
         lineno, funcname, message, comments = r[0]
         assert lineno == 1
-        assert message == 'Hello {who|summary}!'
+        assert message == 'Hello {who}!'
 
 def test_implicit_tvar_due_to_variable_with_formatter():
     with open(datafile('test15.obvt')) as f:
@@ -134,7 +134,7 @@ def test_implicit_tvar_due_to_variable_with_formatter():
         assert len(r) == 1
         lineno, funcname, message, comments = r[0]
         assert lineno == 1
-        assert message == 'Hello {who|formatter}!'
+        assert message == 'Hello {who}!'
 
 def test_variable_with_formatter():
     with open(datafile('test16.obvt')) as f:
@@ -142,5 +142,5 @@ def test_variable_with_formatter():
         assert len(r) == 1
         lineno, funcname, message, comments = r[0]
         assert lineno == 1
-        assert message == 'Hello {who|formatter}!'
+        assert message == 'Hello {who}!'
     
