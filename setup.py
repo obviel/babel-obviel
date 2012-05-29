@@ -14,7 +14,6 @@ setup(
     license='BSD',
     install_requires=[
         'lxml',
-        'Babel',
     ],
     extras_require=dict(
         test=['pytest >= 2.0'],
