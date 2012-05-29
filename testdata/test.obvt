@@ -1,3 +1,4 @@
 <p data-trans="">Hello</p>
 <p data-trans="">Hello <em>{who}</em></p>
 <p data-trans="">Hello <em data-tvar="who">{who}</em></p>
+<p data-trans="message_id">Hello there</p>
