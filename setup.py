@@ -20,5 +20,7 @@ setup(
         test=['pytest >= 2.0'],
         ),
     entry_points="""
-""",
+    [babel.extractors]
+    obvt = babelobviel.obvt:extractor
+    """,
     )
