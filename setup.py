@@ -1,11 +1,17 @@
 import os
 from setuptools import setup, find_packages
 
+long_description = (
+    open('doc/README.txt').read()
+    + '\n' +
+    open('CHANGES.txt').read())
+
+
 setup(
     name='babel-obviel',
     version='0.5dev',
     description='Obviel Template message extractor for Babel',
-    long_description='',
+    long_description=long_description,
     author='Obviel Developers',
     author_email='obviel@googlegroups.com',
     packages=['babelobviel'],
