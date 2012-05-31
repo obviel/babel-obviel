@@ -1,7 +1,7 @@
 CHANGES
 *******
 
-0.5 (unreleased)
+0.5 (2012-05-31)
 ================
 
 Initial public release.
