@@ -1,11 +1,10 @@
 CHANGES
 *******
 
-0.6 (unreleased)
+0.5.2 (unreleased)
 ================
 
-- Nothing changed yet.
-
+* Now the release should be *REALLY* installable; add MANIFEST.in.
 
 0.5.1 (2012-06-06)
 ==================
