@@ -27,5 +27,6 @@ setup(
     entry_points="""
     [babel.extractors]
     obvt = babelobviel.obvt:extractor
+    obvt_html = babelobviel.obvt:html_extractor
     """,
     )

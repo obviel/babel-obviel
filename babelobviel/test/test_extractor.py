@@ -1,4 +1,4 @@
-from babelobviel.obvt import extractor
+from babelobviel.obvt import extractor, html_extractor
 import os
 
 def datafile(name):
@@ -144,3 +144,19 @@ def test_variable_with_formatter():
         assert lineno == 1
         assert message == 'Hello {who}!'
     
+
+def test_html_extractor():
+    with open(datafile('test1.html')) as f:
+        r = list(html_extractor(f, [], [], []))
+        assert len(r) == 1
+        lineno, funcname, message, comments = r[0]
+        assert lineno == 4
+        assert message == 'Hello {who}!'
+
+def test_html_extractor_multi_line():
+    with open(datafile('test2.html')) as f:
+        r = list(html_extractor(f, [], [], []))
+        assert len(r) == 1
+        lineno, funcname, message, comments = r[0]
+        assert lineno == 5
+        assert message == 'Hello {who}!'

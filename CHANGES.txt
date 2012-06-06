@@ -4,8 +4,8 @@ CHANGES
 0.6 (unreleased)
 ================
 
-- Nothing changed yet.
-
+- Support extracting translation markers from a script tag
+  in HTML, using the ``html_obvt`` extractor.
 
 0.5.2 (2012-06-06)
 ==================

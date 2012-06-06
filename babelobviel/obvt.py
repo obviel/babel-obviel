@@ -1,4 +1,5 @@
 from lxml import html
+from StringIO import StringIO
 
 TEXT_TOKEN = 0
 NAME_TOKEN = 1
@@ -24,7 +25,18 @@ def extractor(fileobj, keywords, comment_tags, options):
         message_id  = tvar_message_id(el)
         if message_id is not None:
             yield (el.sourceline, None, message_id, [])
-            
+
+def html_extractor(fileobj, keywords, comment_tags, options):
+    """Extract messages from HTML with embedded obvt text/template script tags.
+    """
+    tree = html.parse(fileobj)
+    for el in tree.xpath('//script[@type="text/template"]'):
+        el_sourceline = el.sourceline
+        for sourceline, d, message_id, l in extractor(
+            StringIO(el.text), keywords, comment_tags,
+            options):
+            yield el_sourceline + sourceline - 1, d, message_id, l
+    
 class TransInfo(object):
     def __init__(self, content_id, message_id):
         self.content_id = content_id

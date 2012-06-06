@@ -22,4 +22,20 @@ this config file like this::
 
   $ bin/pybabel extract -F mapping.cfg <some_directory>
 
+You can also extract from a HTML file. The templates should be
+embedded in script tags of type ``text/template`` like this::
+
+  <html>
+  <body>
+    <script type="text/template" id="my_template">
+       <p data-trans="">Hello world!</p>
+    </script>
+  </body>
+  </html>
+
+To enable this for all HTML files in your project, add this to your
+configuration file::
+
+  [obvt_html: **.html]
+
 .. _babel: http://babel.edgewall.org
