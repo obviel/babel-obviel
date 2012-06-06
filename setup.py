@@ -9,7 +9,7 @@ long_description = (
 
 setup(
     name='babel-obviel',
-    version='0.6',
+    version='0.7.dev0',
     description='Obviel Template message extractor for Babel',
     long_description=long_description,
     author='Obviel Developers',
