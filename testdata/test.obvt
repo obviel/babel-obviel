@@ -1,6 +1,0 @@
-<p data-trans="">Hello</p>
-<p data-trans="">Hello <em>{who}</em></p>
-<p data-trans="">Hello <em data-tvar="who">{who}</em></p>
-<p data-trans=":message_id">Hello there</p>
-<p data-trans="">Hello <em data-tvar="who">great {who}</em></p>
-<p data-trans="">Hello <em data-tvar="who:tvar_message_id">great {who}</em></p>
