@@ -1,11 +1,10 @@
 CHANGES
 *******
 
-0.6 (unreleased)
-================
+0.5.1 (unreleased)
+==================
 
-- Nothing changed yet.
-
+* Actually make it installable (missing doc/README.txt).
 
 0.5 (2012-05-31)
 ================
