@@ -71,9 +71,9 @@ def trans_message_ids(el):
         if transinfo.message_id is not None:
             yield transinfo.message_id
         elif transinfo.content_id == '.':
-            yield text_message_id(el)
+            yield plural_text(el, text_message_id(el))
         else:
-            yield el.get(transinfo.content_id)
+            yield plural_text(el, el.get(transinfo.content_id))
 
 def parse_tvar(el, tvar):
     tvar = tvar.strip()
@@ -117,7 +117,7 @@ def tvar_message_id(el):
     tvar, tvar_message_id = parse_tvar(el, tvar)
     if tvar_message_id is not None:
         return tvar_message_id
-    return message_id
+    return plural_text(el, message_id)
 
 def clean_text(el, text):
     result = []
@@ -128,6 +128,14 @@ def clean_text(el, text):
         else:
             result.append(token['value'])
     return ''.join(result)
+
+def plural_text(el, text) :
+    parts = text.split('||')
+    if len(parts) == 1:
+        return text
+    if len(parts) > 2:
+        raise ExtractionError(el, "too many || in plural")
+    return tuple(parts)
 
 def text_message_id(el):
     parts = []

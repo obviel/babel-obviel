@@ -1,0 +1,1 @@
+<p data-trans="">I count <em data-tvar="something">{count} cow||{count} cows</em></p>

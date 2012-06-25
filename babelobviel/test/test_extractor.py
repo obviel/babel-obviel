@@ -145,6 +145,41 @@ def test_variable_with_formatter():
         assert message == 'Hello {who}!'
     
 
+def test_plural():
+    with open(datafile('test17.obvt')) as f:
+        r = list(extractor(f, [], [], []))
+        assert len(r) == 1
+        lineno, funcname, message, comments = r[0]
+        assert lineno == 1
+        assert message == ('{count} cow', '{count} cows')
+
+def test_plural_explicit():
+    with open(datafile('test18.obvt')) as f:
+        r = list(extractor(f, [], [], []))
+        assert len(r) == 1
+        lineno, funcname, message, comments = r[0]
+        assert lineno == 1
+        assert message == ('{count} cow', '{count} cows')
+
+def test_plural_attribute():
+    with open(datafile('test19.obvt')) as f:
+        r = list(extractor(f, [], [], []))
+        assert len(r) == 1
+        lineno, funcname, message, comments = r[0]
+        assert lineno == 1
+        assert message == ('{count} cow', '{count} cows')
+
+def test_plural_tvar():
+    with open(datafile('test20.obvt')) as f:
+        r = list(extractor(f, [], [], []))
+        assert len(r) == 2
+        lineno, funcname, message, comments = r[0]
+        assert lineno == 1
+        assert message == "I count {something}"
+        lineno, funcname, message, comments = r[1]
+        assert lineno == 1
+        assert message == ('{count} cow', '{count} cows')
+
 def test_html_extractor():
     with open(datafile('test1.html')) as f:
         r = list(html_extractor(f, [], [], []))
