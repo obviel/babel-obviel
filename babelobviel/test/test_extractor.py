@@ -11,7 +11,7 @@ def test_text():
         lineno, funcname, message, comments = r[0]
         assert lineno == 1
         assert message == 'Hello world!'
-        
+        assert funcname is None
 
 def test_text_explicit():
     with open(datafile('test2.obvt')) as f:
@@ -152,7 +152,8 @@ def test_plural():
         lineno, funcname, message, comments = r[0]
         assert lineno == 1
         assert message == ('{count} cow', '{count} cows')
-
+        assert funcname == 'ngettext'
+        
 def test_plural_explicit():
     with open(datafile('test18.obvt')) as f:
         r = list(extractor(f, [], [], []))
