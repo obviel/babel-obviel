@@ -1,7 +1,7 @@
 CHANGES
 *******
 
-0.7 (unreleased)
+0.7 (2012-06-27)
 ================
 
 - If a message has surrounding whitespace, this whitespace should be removed.
