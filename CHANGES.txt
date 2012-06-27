@@ -4,8 +4,7 @@ CHANGES
 0.7 (unreleased)
 ================
 
-- Nothing changed yet.
-
+- If a message has surrounding whitespace, this whitespace should be removed.
 
 0.6 (2012-06-06)
 ================
