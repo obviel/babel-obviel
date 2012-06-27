@@ -196,3 +196,20 @@ def test_html_extractor_multi_line():
         lineno, funcname, message, comments = r[0]
         assert lineno == 5
         assert message == 'Hello {who}!'
+
+def test_whitespace():
+    with open(datafile('test21.obvt')) as f:
+        r = list(extractor(f, [], [], []))
+        assert len(r) == 1
+        lineno, funcname, message, comments = r[0]
+        assert message == "This has whitespace."
+                 
+
+def test_whitespace():
+    with open(datafile('test22.obvt')) as f:
+        r = list(extractor(f, [], [], []))
+        assert len(r) == 2
+        lineno, funcname, message, comments = r[0]
+        assert message == "{something} is up."
+        lineno, funcname, message, comments = r[1]
+        assert message == "This has whitespace."

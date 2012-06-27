@@ -86,9 +86,9 @@ def trans_message_ids(el):
         if transinfo.message_id is not None:
             yield transinfo.message_id
         elif transinfo.content_id == '.':
-            yield text_message_id(el)
+            yield text_message_id(el).strip()
         else:
-            yield el.get(transinfo.content_id)
+            yield el.get(transinfo.content_id.strip())
 
 def parse_tvar(el, tvar):
     tvar = tvar.strip()
@@ -120,7 +120,7 @@ def parse_view(el, view):
 def tvar_message_id(el):
     # don't want to extract tvar if there's no actual content to translate
     # (no text, or single variable by itself)
-    message_id = text_message_id(el)
+    message_id = text_message_id(el).strip()
     tokens = tokenize(message_id)
     if len(tokens) == 0:
         return None
