@@ -205,7 +205,7 @@ def test_whitespace():
         assert message == "This has whitespace."
                  
 
-def test_whitespace():
+def test_tvar_whitespace():
     with open(datafile('test22.obvt')) as f:
         r = list(extractor(f, [], [], []))
         assert len(r) == 2
@@ -213,3 +213,18 @@ def test_whitespace():
         assert message == "{something} is up."
         lineno, funcname, message, comments = r[1]
         assert message == "This has whitespace."
+
+def test_internal_whitespace():
+    with open(datafile('test23.obvt')) as f:
+        r = list(extractor(f, [], [], []))
+        assert len(r) == 1
+        lineno, funcname, message, comments = r[0]
+        assert message == "This has internal whitespace."
+
+def test_attr_whitespace():
+    with open(datafile('test24.obvt')) as f:
+        r = list(extractor(f, [], [], []))
+        assert len(r) == 1
+        lineno, funcname, message, comments = r[0]
+        assert message == " We do want this  whitespace.  "
+

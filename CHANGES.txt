@@ -1,11 +1,11 @@
 CHANGES
 *******
 
-0.8 (unreleased)
-================
+0.7.1 (unreleased)
+==================
 
-- Nothing changed yet.
-
+- Normalize internal whitespace too for HTML. But for attributes,
+  don't normalize any whitespace.
 
 0.7 (2012-06-27)
 ================
